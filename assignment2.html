@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Show/Hide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #4d1111;
+    }
+    .container {
+      background: #fefefe;
+      padding: 60px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .form-group {
+      position: relative;
+      margin-top: 20px;
+    }
+    fieldset {
+      border: 1px solid #000000;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0;
+      position: relative;
+    }
+    legend {
+      font-size: 14px;
+      padding: 0 5px;
+      color: #666;
+    }
+    input[type="password"],
+    input[type="text"] {
+      width: 60%;
+      padding: 10px 60px 10px 0px;
+      margin-left: 0px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+    .eye-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    .eye-icon img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Password Show/Hide</h2>
+    <div class="form-group">
+      <fieldset>
+        <legend align="left">Password</legend>
+        <input type="password" id="password" placeholder="Enter your password">
+        <div class="eye-icon" onclick="togglePassword()">
+          <img id="eyeImage" src="placeholder.jpg" alt="Show Password">
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const eyeImage = document.getElementById('eyeImage');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeImage.src = 'https://www.svgrepo.com/show/380007/eye-password-hide.svg';
+        eyeImage.alt = 'Hide Password';
+      } else {
+        passwordInput.type = 'password';
+        eyeImage.src = 'https://cdn2.iconfinder.com/data/icons/ui-essential-10/24/eye-512.png';
+        eyeImage.alt = 'Show Password';
+      }
+    }
+  </script>
+</body>
+</html>
