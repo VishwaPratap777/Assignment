@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Bulb UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      background-color: rgb(173, 108, 22);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    #inputBox, #bulbsContainer {
+      display: none;
+      margin-top: 20px;
+    }
+    #bulbsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      align-items: center;
+      background-color: rgb(255, 255, 255);
+      border-radius: 25px;
+    }
+    .bulb-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bulb {
+      width: 80px;
+      height: auto;
+      margin: 10px;
+    }
+
+    #app {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 20px;
+    }
+
+    label {
+    font-size: 16px;
+    margin-right: 10px;
+    }
+
+    button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #68a400;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+    background-color: #34972f;
+    }
+
+    #resetBtn {
+    background-color: #85150d;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button id="startBtn" onclick="showInputBox()">Start</button>
+    <div id="inputBox">
+      <label for="numberInput">Enter number of bulbs:</label>
+      <input type="number" id="numberInput" min="1" />
+      <button onclick="generateBulbs()">Submit</button>
+    </div>
+    <div id="bulbsContainer"></div>
+    <button id="resetBtn" style="display:none;" onclick="resetApp()">Reset</button>
+  </div>
+
+  <script>
+    function showInputBox() {
+      document.getElementById('startBtn').style.display = 'none';
+      document.getElementById('inputBox').style.display = 'block';
+    }
+    function generateBulbs() {
+      const bulbCount = parseInt(document.getElementById('numberInput').value);
+      const bulbsContainer = document.getElementById('bulbsContainer');
+      const resetBtn = document.getElementById('resetBtn');
+      bulbsContainer.innerHTML = '';
+
+      if (!isNaN(bulbCount) && bulbCount > 0) {
+        for (let i = 0; i < bulbCount; i++) {
+          const bulbContainer = document.createElement('div');
+          bulbContainer.className = 'bulb-container';
+
+          const bulb = document.createElement('img');
+          bulb.src = 'https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png';
+          bulb.alt = 'Light bulb';
+          bulb.className = 'bulb';
+          const button = document.createElement('button');
+          button.textContent = 'Turn On';
+          button.onclick = () => {
+            bulb.src = 'https://pics.clipartpng.com/midle/Yellow_Light_Bulb_PNG_Clip_Art-2108.png';
+            setTimeout(() => {
+              bulb.src = 'https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png';
+            }, 10000);
+          };
+          bulbContainer.appendChild(bulb);
+          bulbContainer.appendChild(button);
+          bulbsContainer.appendChild(bulbContainer);
+        }l
+        bulbsContainer.style.display = 'flex';
+        resetBtn.style.display = 'block';
+      } else {
+        alert('Please enter a valid number.');
+      }
+    }
+    function resetApp() {
+      document.getElementById('startBtn').style.display = 'block';
+      document.getElementById('inputBox').style.display = 'none';
+      document.getElementById('bulbsContainer').style.display = 'none';
+      document.getElementById('resetBtn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
